@@ -1,5 +1,5 @@
 import './Game.css';
-import Board from './Board';
+import Board from '../board/Board';
 
 const Game = () => {
   return (

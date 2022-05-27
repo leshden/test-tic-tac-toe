@@ -1,7 +1,8 @@
-import Square from './Square';
+import './Board.css';
+import Square from '../square/Square';
 
 function renderSquare(i) {
-  return <Square />;
+  return <Square value = {i} />;
 }
 
 const Board = () => {

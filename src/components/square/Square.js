@@ -1,7 +1,9 @@
-const Square = () => {
+import './Square.css';
+
+const Square = ({value}) => {
   return (
     <button className="square">
-      {/* TODO */}
+      {value}
     </button>
   );
 }
