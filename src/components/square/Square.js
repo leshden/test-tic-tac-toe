@@ -1,8 +1,9 @@
 import './Square.css';
 
-const Square = ({value}) => {
+const Square = ({value, onClickCell}) => {
+
   return (
-    <button className="square">
+    <button className="square" onClick={onClickCell}>
       {value}
     </button>
   );

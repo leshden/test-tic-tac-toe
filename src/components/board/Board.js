@@ -1,13 +1,23 @@
 import './Board.css';
-import Square from '../square/Square';
 
-function renderSquare(i) {
-  return <Square value = {i} />;
-}
+import {useState} from 'react';
+import Square from '../square/Square';
 
 const Board = () => {
 
+  const [squares, setSquares] = useState(Array(9).fill(null));
   const status = 'Next player: X';
+
+  const handleClick = (i) => {
+      const squaresCopy = squares.slice();
+      squaresCopy[i] = 'X';
+      setSquares(squaresCopy);
+      console.log(`onClick cell number : ${i} value : ${squares[i]} `);
+  }
+
+  const renderSquare = (i) => {
+    return <Square value = {squares[i]} onClickCell={()=>(handleClick(i))} />;
+  }
 
   return (
       <div>
@@ -29,7 +39,6 @@ const Board = () => {
         </div>
       </div>
     );
-
 }
 
 export default Board;
