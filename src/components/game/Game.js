@@ -2,6 +2,7 @@ import './Game.css';
 import {useState} from 'react';
 import Board from '../board/Board';
 import Status from '../status/Status';
+import History from '../history/History';
 
 function calculateWinner(squares) {
   const lines = [
@@ -48,15 +49,26 @@ const Game = () => {
     return xIsNext ? 'X' : 'O';
   }
 
+  const moves = history.map((step, move) => {
+   const desc = move ?
+     'Go to move #' + move :
+     'Go to game start';
+   return (
+     <li key={move}>
+       <button>{desc}</button>
+     </li>
+   );
+ });
+
   return (
     <div className="game">
       <div className="game-board">
         <Board squares={current.squares} handleClick={(i) => handleClick(i)} />
       </div>
-      <div className="game-info">
+      <section className="game-info">
         <Status winner={calculateWinner(current.squares)} player={getXorO()} />
-        <ol>{/* TODO */}</ol>
-      </div>
+        <History />
+      </section>
     </div>
   );
 }
