@@ -1,8 +1,9 @@
 import './Game.css';
-import {useState} from 'react';
+import {useState, useContext} from 'react';
 import Board from '../board/Board';
 import Status from '../status/Status';
 import History from '../history/History';
+import {StateContext} from '../../contexts/state-context/StateContext';
 
 function calculateWinner(squares) {
   const lines = [
@@ -27,22 +28,25 @@ function calculateWinner(squares) {
 
 const Game = () => {
 
+  const {xIsNext, setXNext, stepNumber, setStepNumber} = useContext(StateContext);
   const [history, setHistory] = useState([{squares: Array(9).fill(null)}])
-  const [xIsNext, setXNext] = useState(true);
-  const current = history[history.length - 1];
+  const historyCopy = history.slice(0, stepNumber + 1);
+  const current = historyCopy[historyCopy.length - 1];
 
   const handleClick = (i) => {
-    const current = history[history.length - 1];
-      const squaresCopy = current.squares.slice();
-      if (calculateWinner(squaresCopy) || squaresCopy[i]) {
-          return;
-      }
-      squaresCopy[i] = getXorO();
+    const historyCopy = history.slice(0, stepNumber + 1);
+    const current = historyCopy[historyCopy.length - 1];
+    const squaresCopy = current.squares.slice();
+    if (calculateWinner(squaresCopy) || squaresCopy[i]) {
+        return;
+    }
+    squaresCopy[i] = getXorO();
 
-      setHistory(history.concat([{ squares: squaresCopy}]));
-      setXNext(!xIsNext);
+    setStepNumber(historyCopy.length);
+    setHistory(historyCopy.concat([{ squares: squaresCopy}]));
+    setXNext(!xIsNext);
 
-      console.log(`onClick cell number : ${i} value : ${squaresCopy[i]} `);
+    console.log(`onClick cell number : ${i} value : ${squaresCopy[i]} `);
   }
 
   function getXorO() {

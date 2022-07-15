@@ -1,4 +1,15 @@
+import {StateContext} from '../../contexts/state-context/StateContext';
+import {useContext} from 'react';
+
 const History = ({history}) => {
+
+  const {setStepNumber, setXNext} = useContext(StateContext);
+
+  const jumpTo = (step) => {
+    setStepNumber(step);
+    setXNext((step % 2) === 0);
+    console.log(`jumpToStep: ${step}`);
+  }
 
   const moves = history.map((step, move) => {
    const desc = move ?
@@ -6,7 +17,7 @@ const History = ({history}) => {
      'Go to game start';
    return (
      <li key={move}>
-       <button>{desc}</button>
+       <button onClick={()=>{jumpTo(move)}}>{desc}</button>
      </li>
    );
   });

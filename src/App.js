@@ -1,8 +1,11 @@
 import Game from './components/game/Game'
+import {StateContextProvider} from './contexts/state-context/StateContext';
 
 function App() {
   return (
-    <Game />
+    <StateContextProvider>
+      <Game />
+    </StateContextProvider>
   );
 }
 
