@@ -30,8 +30,7 @@ const Game = () => {
 
   const {xIsNext, setXNext, stepNumber, setStepNumber} = useContext(StateContext);
   const [history, setHistory] = useState([{squares: Array(9).fill(null)}])
-  const historyCopy = history.slice(0, stepNumber + 1);
-  const current = historyCopy[historyCopy.length - 1];
+  const current = history[stepNumber];
 
   const handleClick = (i) => {
     const historyCopy = history.slice(0, stepNumber + 1);
