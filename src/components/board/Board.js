@@ -10,7 +10,7 @@ const Board = (props) => {
   }
 
   return (
-      <div>
+      <div role='board'>
         <div className="board-row">
           {renderSquare(0)}
           {renderSquare(1)}

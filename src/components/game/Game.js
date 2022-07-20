@@ -53,7 +53,7 @@ const Game = () => {
   }
 
   return (
-    <div className="game">
+    <div className="game" role='game'>
       <div className="game-board">
         <Board squares={current.squares} handleClick={(i) => handleClick(i)} />
       </div>
