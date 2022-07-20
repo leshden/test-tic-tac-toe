@@ -1,9 +1,8 @@
-import {StateContext} from '../../contexts/state-context/StateContext';
-import {useContext} from 'react';
+import {useSateContext} from '../../contexts/state-context/StateContext';
 
 const History = ({history}) => {
 
-  const {setStepNumber, setXNext} = useContext(StateContext);
+  const {setStepNumber, setXNext} = useSateContext();
 
   const jumpTo = (step) => {
     setStepNumber(step);

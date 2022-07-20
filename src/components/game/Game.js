@@ -1,9 +1,9 @@
 import './Game.css';
-import {useState, useContext} from 'react';
+import {useState} from 'react';
 import Board from '../board/Board';
 import Status from '../status/Status';
 import History from '../history/History';
-import {StateContext} from '../../contexts/state-context/StateContext';
+import {useSateContext} from '../../contexts/state-context/StateContext';
 
 function calculateWinner(squares) {
   const lines = [
@@ -28,7 +28,7 @@ function calculateWinner(squares) {
 
 const Game = () => {
 
-  const {xIsNext, setXNext, stepNumber, setStepNumber} = useContext(StateContext);
+  const {xIsNext, setXNext, stepNumber, setStepNumber} = useSateContext();
   const [history, setHistory] = useState([{squares: Array(9).fill(null)}])
   const current = history[stepNumber];
 

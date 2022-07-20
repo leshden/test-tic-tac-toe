@@ -1,6 +1,6 @@
-import {createContext, useState} from 'react';
+import {createContext, useState, useContext} from 'react';
 
-export const StateContext = createContext();
+const StateContext = createContext();
 
 export const StateContextProvider = ({children}) => {
   const [stepNumber, setStepNumber] = useState(0);
@@ -13,4 +13,14 @@ export const StateContextProvider = ({children}) => {
       {children}
     </StateContext.Provider>
   );
+}
+
+export const useSateContext = () => {
+  const context = useContext(StateContext);
+
+  if (context === undefined) {
+    throw new Error("useSateContext was used outside of its Provider");
+  }
+
+  return context;
 }
