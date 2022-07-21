@@ -7,7 +7,6 @@ const History = ({history}) => {
   const jumpTo = (step) => {
     setStepNumber(step);
     setXNext((step % 2) === 0);
-    console.log(`jumpToStep: ${step}`);
   }
 
   const moves = history.map((step, move) => {
